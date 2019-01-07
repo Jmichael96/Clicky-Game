@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Randy Marsh",
+    "image": "/assets/images/randy-marsh.png"
+  },
+  {
+    "id": 2,
+    "name": "Stan",
+    "image": "/assets/images/StanMarsh.png"
+  },
+  {
+    "id": 3,
+    "name": "Kenny",
+    "image": "/assets/images/kenny.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Cartman",
+    "image": "/assets/images/cartman.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Kyle",
+    "image": "/assets/images/kyle.jpg"
+  },
+  {
+    "id": 6,
+    "name": "ManBearPig",
+    "image": "/assets/images/manbearpig.png"
+  },
+  {
+    "id": 7,
+    "name": "Butters",
+    "image": "/assets/images/butters.png"
+  },
+  {
+    "id": 8,
+    "name": "Masterion",
+    "image": "/assets/images/Mysterion.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Mr Mackey",
+    "image": "/assets/images/mackey.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Kitty",
+    "image": "/assets/images/kitty.jpg"
+  },
+  {
+    "id": 11,
+    "name": "Wendy",
+    "image": "/assets/images/wendy.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Garrison",
+    "image": "/assets/images/garrison.jpg"
+  }
+]
