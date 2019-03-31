@@ -1,6 +1,7 @@
 # CLICKY-GAME 
 
 ## [LIVE LINK HERE](https://lit-wildwood-52008.herokuapp.com/)
+![clicky](https://user-images.githubusercontent.com/40511023/55295669-57f00d00-53d5-11e9-89a0-aec473822689.gif)
 
 ## TOOLS USED: 
 - React
