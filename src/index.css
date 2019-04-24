@@ -2,9 +2,9 @@
   box-sizing: border-box;
   font-family: sans-serif;
 }
-
 html, body, #root {
   padding: 0;
+  background-color:rgb(25, 124, 216);
   margin: 0;
   height: 100%;
 }

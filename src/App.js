@@ -4,10 +4,7 @@ import Wrapper from './components/Wrapper';
 import Title from './components/Title';
 import Counter from './components/Counter';
 import friends from './friends.json';
-
-// let correctGuesses = 0;
-// let topScore = 0;
-// let clickMessage = "Click on an image to earn points, but don't click on any of them more than once!";
+import { MDBRow, MDBContainer, MDBCol } from 'mdbreact';
 
 class App extends Component {
 	// Set this.state
@@ -85,22 +82,29 @@ class App extends Component {
 			this.setState({ friends });
 		}
 	};
-// render the data to the page
+	// render the data to the page
 	render() {
 		return (
 			<div>
-				<Wrapper>
-					<Title />
-					<Counter score={this.state.correctGuesses} topScore={this.state.topScore} clickMessage={this.state.clickMessage} />
-					{this.state.friends.map(friend => (
-						<FriendCard
-							id={friend.id}
-							key={friend.id}
-							image={friend.image}
-							setClicked={this.setClicked}
-						/>
-					))}
-				</Wrapper>
+
+				<Title />
+				<MDBContainer>
+					<MDBRow>
+						<MDBCol className="d-flex justify-content-center">
+							<Counter score={this.state.correctGuesses} topScore={this.state.topScore} clickMessage={this.state.clickMessage} />
+						</MDBCol>
+					</MDBRow>
+					</MDBContainer>
+					<Wrapper>
+						{this.state.friends.map(friend => (
+							<FriendCard
+								id={friend.id}
+								key={friend.id}
+								image={friend.image}
+								setClicked={this.setClicked}
+							/>
+						))}
+					</Wrapper>
 			</div>
 		);
 	}
