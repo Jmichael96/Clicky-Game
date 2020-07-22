@@ -12,7 +12,7 @@
 - React
 - Npm
 - JSX
-- Materialize
+- MDBReact
 - CSS
 - JavaScript
 
