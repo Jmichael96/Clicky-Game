@@ -1,0 +1,16 @@
+#loseModalFooter {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* header for the lose modal */
+
+.loseModalHeader {
+    font-weight: 500;
+}
+
+/* the 'YOUR SCORE' text in the modal body */
+#scoreText {
+    font-weight: 500;
+}

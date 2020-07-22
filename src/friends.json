@@ -2,61 +2,73 @@
   {
     "id": 1,
     "name": "Randy Marsh",
-    "image": "/assets/images/randy-marsh.png"
+    "image": "/assets/images/randy-marsh.png",
+    "clicked": false
   },
   {
     "id": 2,
     "name": "Stan",
-    "image": "/assets/images/StanMarsh.png"
+    "image": "/assets/images/StanMarsh.png",
+    "clicked": false
   },
   {
     "id": 3,
     "name": "Kenny",
-    "image": "/assets/images/kenny.jpg"
+    "image": "/assets/images/kenny.jpg",
+    "clicked": false
   },
   {
     "id": 4,
     "name": "Cartman",
-    "image": "/assets/images/cartman.jpg"
+    "image": "/assets/images/cartman.jpg",
+    "clicked": false
   },
   {
     "id": 5,
     "name": "Kyle",
-    "image": "/assets/images/kyle.jpg"
+    "image": "/assets/images/kyle.jpg",
+    "clicked": false
   },
   {
     "id": 6,
     "name": "ManBearPig",
-    "image": "/assets/images/manbearpig.png"
+    "image": "/assets/images/manbearpig.png",
+    "clicked": false
   },
   {
     "id": 7,
     "name": "Butters",
-    "image": "/assets/images/butters.png"
+    "image": "/assets/images/butters.png",
+    "clicked": false
   },
   {
     "id": 8,
     "name": "Masterion",
-    "image": "/assets/images/Mysterion.jpg"
+    "image": "/assets/images/Mysterion.jpg",
+    "clicked": false
   },
   {
     "id": 9,
     "name": "Mr Mackey",
-    "image": "/assets/images/mackey.jpg"
+    "image": "/assets/images/mackey.jpg",
+    "clicked": false
   },
   {
     "id": 10,
     "name": "Kitty",
-    "image": "/assets/images/kitty.jpg"
+    "image": "/assets/images/kitty.jpg",
+    "clicked": false
   },
   {
     "id": 11,
     "name": "Wendy",
-    "image": "/assets/images/wendy.jpg"
+    "image": "/assets/images/wendy.jpg",
+    "clicked": false
   },
   {
     "id": 12,
     "name": "Garrison",
-    "image": "/assets/images/garrison.jpg"
+    "image": "/assets/images/garrison.jpg",
+    "clicked": false
   }
 ]

@@ -1,113 +1,128 @@
-import React, { Component } from 'react';
-import FriendCard from './components/FriendCard';
-import Wrapper from './components/Wrapper';
-import Title from './components/Title';
-import Counter from './components/Counter';
-import friends from './friends.json';
-import { MDBRow, MDBContainer, MDBCol } from 'mdbreact';
+import React, { useState, useEffect, Fragment } from "react";
+import FriendCard from "./components/FriendCard";
+import Wrapper from "./components/Wrapper";
+import Counter from "./components/Counter";
+import friends from "./friends.json";
+import Navbar from "./components/Navbar/Navbar.jsx";
+import isEmpty from "./utils/isEmpty.js";
+import {
+	MDBModal,
+	MDBModalBody,
+	MDBModalHeader,
+	MDBModalFooter
+} from "mdbreact";
 
-class App extends Component {
-	// Set this.state
-	state = {
-		friends,
-		clickMessage: "Lets Begin!",
-		correctGuesses: 0,
-		topScore: 0
-	};
-	setClicked = (id) => {
+import "./App.css";
 
-		// Make a copy of the state friends array to work with
-		const friends = this.state.friends;
+const App = () => {
+	const [correctGuesses, setCorrectGuesses] = useState(0);
+	const [topScore, setTopScore] = useState(0);
+	const [friendArr, setFriendArr] = useState([]);
+	const [modal, setModal] = useState(false);
 
-		// Filter for the clicked match
-		const clickedMatch = friends.filter(match => match.id === id);
+	// assign json array to component state on load
+	useEffect(() => {
+		setFriendArr([...friends])
+	}, []);
 
-		// If the matched image's clicked value is already true, game over
-		if (clickedMatch[0].clicked) {
-			this.setState({ correctGuesses: 0, clickMessage: "Bummer! You alread clicked that one. Try again!" });
+	// watch the correctGuesses and if it counts higher than top score
+	// add to top score state
+	useEffect(() => {
+		if (correctGuesses > topScore) {
+			setTopScore(correctGuesses);
+		}
+	}, [correctGuesses]);
 
+	const setClicked = (id) => {
 
-			for (let i = 0; i < friends.length; i++) {
-				friends[i].clicked = false;
+		const clickedMatch = friendArr.filter(match => match.id === id);
+
+		if (clickedMatch[0].clicked === true) {
+			// set game over to true
+			setModal(true);
+
+			// reset all friends clicked booleans to false
+			for (let i = 0; i < friendArr.length; i++) {
+				friendArr[i].clicked = false;
 			}
 
-			this.setState({ friends });
+			// randomize the friend cards
+			friendArr.sort(function (a, b) { return 0.5 - Math.random() });
+		}
+		else if (clickedMatch[0].clicked === false) {
 
-			// Otherwise, if clicked = false, and the user hasn't finished
-		} else if (this.state.correctGuesses < 11) {
-
-			// Set its value to true
+			// set clicked to true for assigned friend
 			clickedMatch[0].clicked = true;
 
-			// increment the appropriate counter
-			this.setState({
-				correctGuesses: this.state.correctGuesses + 1,
-				clickMessage: "You haven't clicked on that one yet! Keep on going!"
-			},
-				() => {
-					console.log(this.state.correctGuesses, this.state.topScore)
-					if (this.state.correctGuesses > this.state.topScore) {
-						console.log(this.state.correctGuesses, this.state.topScore)
-						this.setState({
-							topScore: this.state.correctGuesses
-						},
-							() => console.log(this.state.correctGuesses, this.state.topScore)
-						);
-					}
-				}
-
-			);
-			// Shuffle the array to be rendered in a random order
-			friends.sort(function (a, b) { return 0.5 - Math.random() });
-
-			// Set this.state.friends equal to the new friends array
-			this.setState({ friends });
-		} else {
-			// Set its value to true
-			clickedMatch[0].clicked = true;
-
-			// restart the guess counter
-			this.setState({
-				correctGuesses: 0,
-				clickMessage: "You got ALL of them!!! Now, let's see if you can do it again!",
-				topScore: 12
-			});
-
-			for (let i = 0; i < friends.length; i++) {
-				friends[i].clicked = false;
+			// make sure guesses are not over the amount of friends listed and then add count
+			if (correctGuesses < 12) {
+				setCorrectGuesses(correctGuesses + 1);
 			}
-			// Shuffle the array to be rendered in a random order
-			friends.sort(function (a, b) { return 0.5 - Math.random() });
-			// Set this.state.friends equal to the new friends array
-			this.setState({ friends });
+
+			// randomize the friend cards
+			friendArr.sort(function (a, b) { return 0.5 - Math.random() });
 		}
 	};
-	// render the data to the page
-	render() {
-		return (
-			<div>
 
-				<Title />
-				<MDBContainer>
-					<MDBRow>
-						<MDBCol className="d-flex justify-content-center">
-							<Counter score={this.state.correctGuesses} topScore={this.state.topScore} clickMessage={this.state.clickMessage} />
-						</MDBCol>
-					</MDBRow>
-					</MDBContainer>
-					<Wrapper>
-						{this.state.friends.map(friend => (
-							<FriendCard
-								id={friend.id}
-								key={friend.id}
-								image={friend.image}
-								setClicked={this.setClicked}
-							/>
-						))}
-					</Wrapper>
-			</div>
-		);
+	const renderFriends = () => {
+		if (!isEmpty(friendArr)) {
+			return Object.values(friendArr).map((friend, i) => {
+				return <div key={i + 1}>
+					<FriendCard
+						id={friend.id}
+						key={friend.id}
+						image={friend.image}
+						setClicked={setClicked}
+					/>
+				</div>
+			})
+		}
 	}
+	// function to toggle the modal's state
+	const closeModal = () => {
+		setModal(false);
+	}
+
+	// render different text according to the score count
+	const renderModalText = () => {
+		if (correctGuesses === 12) {
+			return <p className="loseModalHeader">YOU WIN!!</p>
+		}
+		else if (correctGuesses >= 11) {
+			return <p className="loseModalHeader">SO CLOSE!</p>
+		} else {
+			return <p className="loseModalHeader">BETTER LUCK NEXT TIME!</p>
+		}
+	}
+
+	return (
+		<Fragment>
+			<Navbar />
+			<Wrapper>
+				<Counter score={correctGuesses} topScore={topScore} />
+			</Wrapper>
+			<Wrapper>
+				{renderFriends()}
+			</Wrapper>
+			<MDBModal isOpen={modal} toggle={closeModal}>
+				<MDBModalHeader toggle={closeModal}>{renderModalText()}</MDBModalHeader>
+				<MDBModalBody>
+					<p><span id="scoreText">YOUR SCORE:</span> {correctGuesses}/12</p>
+				</MDBModalBody>
+				<MDBModalFooter id="loseModalFooter">
+					<button className="buttons" onClick={() => {
+						closeModal();
+						setTopScore(0);
+						setCorrectGuesses(0);
+					}}>QUIT</button>
+					<button className="buttons" onClick={() => {
+						closeModal();
+						setCorrectGuesses(0);
+					}}>KEEP TRYING</button>
+				</MDBModalFooter>
+			</MDBModal>
+		</Fragment>
+	)
 }
 
 export default App;

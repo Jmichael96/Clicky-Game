@@ -1,31 +1,114 @@
 #card {
   background: rgb(1, 24, 87);
-  border-radius: 2px;
   height: 160px;
   margin: 1rem;
   width: 160px;
-  box-shadow: 0 3px 15px rgb(0, 0, 0), 0 3px 18px rgb(0, 0, 0);
+  box-shadow: 0 2px 8px rgb(121, 121, 121);
   text-align: center;
-  border-radius: 5px;
-  -webkit-transition: box-shadow 1s ease-out;
-  -moz-transition: box-shadow 1s ease-out;
-  -o-transition: box-shadow 1s ease-out;
-  transition: box-shadow 1s ease-out;
+  border-radius: 3px;
 }
+
 #card:hover {
-  box-shadow: 0 2px 10px red, 0 2px 20px red, 0 2px 30px red;
   cursor: pointer;
+  animation: getShakey 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
-#card > .img-container {
+
+#card>.img-container {
   height: 100%;
   overflow: hidden;
   text-align: center;
   background: rgb(1, 24, 87);
   border-radius: 5px;
-
 }
-#card > .img-container > img {
+
+#card>.img-container>img {
   height: 100%;
 }
 
+/* animation for friend cards */
 
+@-webkit-keyframes getShakey {
+  0% {
+    transform: rotate(0);
+  }
+  15% {
+    transform: rotate(5deg);
+  }
+  30% {
+    transform: rotate(-5deg);
+  }
+  45% {
+    transform: rotate(4deg);
+  }
+  60% {
+    transform: rotate(-4deg);
+  }
+  75% {
+    transform: rotate(2deg);
+  }
+  85% {
+    transform: rotate(-2deg);
+  }
+  92% {
+    transform: rotate(1deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+@keyframes getShakey {
+  0% {
+    transform: rotate(0);
+  }
+  15% {
+    transform: rotate(5deg);
+  }
+  30% {
+    transform: rotate(-5deg);
+  }
+  45% {
+    transform: rotate(4deg);
+  }
+  60% {
+    transform: rotate(-4deg);
+  }
+  75% {
+    transform: rotate(2deg);
+  }
+  85% {
+    transform: rotate(-2deg);
+  }
+  92% {
+    transform: rotate(1deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+/* ! MEDIA QUERIES */
+
+@media only screen and (max-width: 808px) {
+  #card {
+    height: 7rem;
+    width: 7rem;
+    margin: .8rem;
+  }
+}
+
+@media only screen and (max-width: 452px) {
+  #card {
+    height: 6rem;
+    width: 6rem;
+    margin: .2rem;
+  }
+}
+
+@media only screen and (max-width: 348px) {
+  #card {
+    height: 5rem;
+    width: 5rem;
+    margin: .2rem;
+  }
+}

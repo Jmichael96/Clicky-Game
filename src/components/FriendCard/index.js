@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-function FriendCard(props) {
+const FriendCard = (props) => {
   return (
     <div className="body">
       <div id="card" onClick={() => props.setClicked(props.id)}>
