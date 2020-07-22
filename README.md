@@ -10,7 +10,7 @@
 
 ## TOOLS USED: 
 - React
-- Yarn
+- Npm
 - JSX
 - Materialize
 - CSS
