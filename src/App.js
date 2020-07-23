@@ -47,12 +47,12 @@ const App = () => {
 
 		if (clickedMatch[0].clicked === true) {
 			// set game over to true
-			// setModal(true);
+			setModal(true);
 
 			// reset all friends clicked booleans to false
-			// for (let i = 0; i < friendArr.length; i++) {
-			// 	friendArr[i].clicked = false;
-			// }
+			for (let i = 0; i < friendArr.length; i++) {
+				friendArr[i].clicked = false;
+			}
 
 			// randomize the friend cards
 			friendArr.sort(function (a, b) { return 0.5 - Math.random() });
