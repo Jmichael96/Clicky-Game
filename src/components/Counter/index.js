@@ -5,7 +5,7 @@ const Counter = (props) => {
   return (
     <div id="scoreCard">
       <div id="scoreWrap">
-        <p>Score: {props.score} | Highscore: {props.topScore}</p>
+        <p>SCORE: {props.score} | WIN STREAK: {props.winStreak}</p>
       </div>
     </div>
   );

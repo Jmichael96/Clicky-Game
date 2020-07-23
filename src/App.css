@@ -11,6 +11,6 @@
 }
 
 /* the 'YOUR SCORE' text in the modal body */
-#scoreText {
+.scoreText {
     font-weight: 500;
 }

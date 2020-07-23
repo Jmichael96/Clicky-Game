@@ -16,7 +16,7 @@ import "./App.css";
 
 const App = () => {
 	const [correctGuesses, setCorrectGuesses] = useState(0);
-	const [topScore, setTopScore] = useState(0);
+	const [winStreak, setWinStreak] = useState(0);
 	const [friendArr, setFriendArr] = useState([]);
 	const [modal, setModal] = useState(false);
 
@@ -25,26 +25,34 @@ const App = () => {
 		setFriendArr([...friends])
 	}, []);
 
-	// watch the correctGuesses and if it counts higher than top score
-	// add to top score state
+	// if the user guesses them all correctly bring up winning modal
 	useEffect(() => {
-		if (correctGuesses > topScore) {
-			setTopScore(correctGuesses);
-		}
-	}, [correctGuesses]);
+		// if correct guesses is divisible by 12
+		if (correctGuesses === 12) {
+			// open win modal
+			setModal(true);
+			// set win streak
+			setWinStreak(winStreak + 1);
 
+			// reset the friend array clicked paremeter to false
+			for (let i = 0; i < friendArr.length; i++) {
+				friendArr[i].clicked = false;
+			}
+		}
+
+	}, [correctGuesses])
 	const setClicked = (id) => {
 
 		const clickedMatch = friendArr.filter(match => match.id === id);
 
 		if (clickedMatch[0].clicked === true) {
 			// set game over to true
-			setModal(true);
+			// setModal(true);
 
 			// reset all friends clicked booleans to false
-			for (let i = 0; i < friendArr.length; i++) {
-				friendArr[i].clicked = false;
-			}
+			// for (let i = 0; i < friendArr.length; i++) {
+			// 	friendArr[i].clicked = false;
+			// }
 
 			// randomize the friend cards
 			friendArr.sort(function (a, b) { return 0.5 - Math.random() });
@@ -57,6 +65,10 @@ const App = () => {
 			// make sure guesses are not over the amount of friends listed and then add count
 			if (correctGuesses < 12) {
 				setCorrectGuesses(correctGuesses + 1);
+			}
+
+			if (correctGuesses === 12) {
+				setModal(true);
 			}
 
 			// randomize the friend cards
@@ -99,26 +111,27 @@ const App = () => {
 		<Fragment>
 			<Navbar />
 			<Wrapper>
-				<Counter score={correctGuesses} topScore={topScore} />
+				<Counter score={correctGuesses} winStreak={winStreak} />
 			</Wrapper>
 			<Wrapper>
 				{renderFriends()}
 			</Wrapper>
-			<MDBModal isOpen={modal} toggle={closeModal}>
-				<MDBModalHeader toggle={closeModal}>{renderModalText()}</MDBModalHeader>
+			<MDBModal isOpen={modal} backdrop={false} toggle={closeModal}>
+				<MDBModalHeader>{renderModalText()}</MDBModalHeader>
 				<MDBModalBody>
-					<p><span id="scoreText">YOUR SCORE:</span> {correctGuesses}/12</p>
+					<p><span className="scoreText">YOUR SCORE:</span> {correctGuesses}/12</p>
+					<p><span className="scoreText">YOUR WIN STREAK:</span> {winStreak}</p>
 				</MDBModalBody>
 				<MDBModalFooter id="loseModalFooter">
 					<button className="buttons" onClick={() => {
 						closeModal();
-						setTopScore(0);
+						setWinStreak(0);
 						setCorrectGuesses(0);
 					}}>QUIT</button>
 					<button className="buttons" onClick={() => {
 						closeModal();
 						setCorrectGuesses(0);
-					}}>KEEP TRYING</button>
+					}}>KEEP GOING</button>
 				</MDBModalFooter>
 			</MDBModal>
 		</Fragment>
